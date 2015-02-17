@@ -7,7 +7,21 @@ $(document).ready(function() {
     var city = $("input#city").val();
     var state = $("input#state").val();
     var zip = $("input#zip").val();
-    var newContact = { firstName: inputtedFirstName, lastName: inputtedLastName, street: street, city: city, state: state, zip: zip };
+    var newContact = { firstName: inputtedFirstName,
+                       lastName: inputtedLastName,
+                       address: newAddress.fullAddress()
+                     }
+
+    var newAddress = { street: street,
+                       city: city,
+                       state: state,
+                       zip: zip
+                       fullAddress: function() {
+                         return this.street + '\n' +
+                                this.city + ', ' + this.state + ' ' + this.zip;
+                       }};
+
+
 
     $("ul#contacts").append("<li><span class='contact'>" +
                             newContact.firstName + " " +
@@ -34,7 +48,7 @@ $(document).ready(function() {
   });
 
 
-  
+
 
 $("button#dummy-create").click(function(event) {
   event.preventDefault();
